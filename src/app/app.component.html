@@ -1,12 +1,14 @@
 <div *ngIf="articulos!=null; else espera">
+  <h1> Correos Institucionales Alcaldía de Copacabana </h1>
+  <hr>
   <table border="1">
     <tr>
-      <td>Codigo</td><td>Descripcion</td><td>Precio</td>
+      <td>Fecha</td><td>usuario principal</td><td>nombre</td>
     </tr>
     <tr *ngFor="let art of articulos">
-      <td>{{art.id}}</td>
-      <td>{{art.name}}</td>
-      <td>{{art.description}}</td>
+      <td>{{art.report_refresh_date}}</td>
+      <td>{{art.user_principal_name}}</td>
+      <td>{{art.display_name}}</td>
     </tr>
   </table>
 </div>

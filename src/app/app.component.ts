@@ -26,7 +26,7 @@ export class AppComponent {
 
 
 
-    this.http.get("https://www.datos.gov.co/api/views/nr49-4vwb/rows.json?accessType=DOWNLOAD")
+    this.http.get("https://www.datos.gov.co/resource/rubk-nymq.json")
       .subscribe(
         result => {
           this.articulos=result;
