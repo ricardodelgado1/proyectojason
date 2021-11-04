@@ -1,15 +1,48 @@
-<div *ngIf="articulos!=null; else espera">
-  <h1> Correos Institucionales Alcaldía de Copacabana </h1>
+<div class="example-header mat-elevation-z8">
+  <h1>Secuestro simple y extorsivo registrado en Colombia por los Gaulas Policiales y Militares</h1>
   <hr>
-  <table border="1">
-    <tr>
-      <td>Fecha</td><td>usuario principal</td><td>nombre</td>
-    </tr>
-    <tr *ngFor="let art of articulos">
-      <td>{{art.report_refresh_date}}</td>
-      <td>{{art.user_principal_name}}</td>
-      <td>{{art.display_name}}</td>
-    </tr>
-  </table>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($any($event.target).value)"
+    placeholder="Escriba algo para filtrar">
+  </mat-form-field>
 </div>
-<ng-template #espera>Esperando Datos...</ng-template>
+<br>
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+      <!--  Columna Fecha-->
+      <ng-container matColumnDef="fecha_hecho">
+            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Fecha</b></mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.fecha_hecho}} </mat-cell>
+      </ng-container>
+
+      <!-- Columna Departamento -->
+      <ng-container matColumnDef="departamento">
+            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Departamento</b></mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.departamento}} </mat-cell>
+      </ng-container>
+
+      <!-- Columna Municipio-->
+      <ng-container matColumnDef="municipio">
+            <mat-header-cell *matHeaderCellDef mat-sort-header><b> Municipio </b></mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.municipio}} </mat-cell>
+      </ng-container>
+
+      <!-- Columna Delito-->
+      <ng-container matColumnDef="tipo_delito">
+            <mat-header-cell *matHeaderCellDef mat-sort-header><b> Delito </b></mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.tipo_delito}} </mat-cell>
+      </ng-container>
+
+      <!-- Columna Cantidad-->
+      <ng-container matColumnDef="cantidad">
+            <mat-header-cell *matHeaderCellDef mat-sort-header><b> Cantidad </b></mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cantidad}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns" class="encabezado"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="25" [showFirstLastButtons]></mat-paginator>
+

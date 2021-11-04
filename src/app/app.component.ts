@@ -1,40 +1,62 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
+import { DatosService } from './datos.service';
+
+import { MatPaginator } from '@angular/material/paginator';
+
+
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
+
 })
-export class AppComponent {
-  title = 'proyectojason';
 
- // articulos = new Object();
- articulos:any={};
- // articulos = null;
+export class AppComponent implements OnInit{
 
 
+title = 'proyectojson';
 
-  constructor(private http: HttpClient) { }
+ displayedColumns = ['fecha_hecho', 'departamento', 'municipio', 'tipo_delito', 'cantidad'];
+ dataSource: any;
+
+ @ViewChild(MatPaginator) paginator!: MatPaginator ;
+ @ViewChild(MatSort) sort!: MatSort;
+
+
+
+  constructor(private datos:DatosService) { }
 
   ngOnInit() {
-    /*interface articulos{
-      codigo: string;
-      descripcion: string;
-      precio: number;
-    }*/
-
-
-
-    this.http.get("https://www.datos.gov.co/resource/rubk-nymq.json")
-      .subscribe(
-        result => {
-          this.articulos=result;
-          console.log(result)
-        },
-        error => {
-          console.log('problemas');
-        }
-      );
+    this.renderDataTable();
   }
+
+  renderDataTable() {
+    this.datos.getRegistros()
+      .subscribe(
+          x => {
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.data = x;
+    //console.log(this.dataSource.data);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  },
+  error => {
+    console.log('There was an error while retrieving Usuarios!' + error);
+  });
+ }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+}
+
+
+
 }
