@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
-import { DatosService } from './datos.service';
-
+import { DatosService } from './datos.service';//importamos el servicio
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
 
 
@@ -47,11 +48,11 @@ title = 'proyectojson';
     this.dataSource.paginator = this.paginator;
   },
   error => {
-    console.log('There was an error while retrieving Usuarios!' + error);
+    console.log('There was an error while retrieving Delitos!' + error);
   });
  }
 
-  applyFilter(filterValue: string) {
+applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;

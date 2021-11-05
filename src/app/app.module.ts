@@ -6,7 +6,9 @@ import { MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { MatSortModule} from '@angular/material/sort';
-
+//de diseño
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -21,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

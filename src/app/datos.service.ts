@@ -14,7 +14,7 @@ export class DatosService {
   constructor(private http: HttpClient) { }
 
   public getRegistros():Observable<Delito[]>{
-    return this.http.get<Delito[]>('https://www.datos.gov.co/resource/d7zw-hpf4.json?$limit=18573');
+    return this.http.get<Delito[]>('https://www.datos.gov.co/resource/d7zw-hpf4.json?$limit=18570');
   }
 
 }

@@ -1,3 +1,19 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Datos Colombia</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
 <div class="example-header mat-elevation-z8">
   <h1>Secuestro simple y extorsivo registrado en Colombia por los Gaulas Policiales y Militares</h1>
   <hr>
@@ -9,7 +25,7 @@
 <br>
 <div class="example-container mat-elevation-z8">
   <mat-table [dataSource]="dataSource" matSort>
-      <!--  Columna Fecha-->
+       <!-- Columna Fecha-->
       <ng-container matColumnDef="fecha_hecho">
             <mat-header-cell *matHeaderCellDef mat-sort-header><b>Fecha</b></mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.fecha_hecho}} </mat-cell>
@@ -44,5 +60,5 @@
   </mat-table>
 
 </div>
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="25" [showFirstLastButtons]></mat-paginator>
+<mat-paginator  [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
 
